@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Menu as MenuIcon, X as CloseIcon } from 'lucide-react'; // Example icons, update based on your icons source
+import Image from 'next/image'; // Import the Image component
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ function Navbar() {
     setIsMenuOpen(false);
   };
 
-   const handleLinkClick = (link :any) => {
+  const handleLinkClick = (link: string) => {
     setActiveLink(link); // Set the active link
     closeMenu(); // Close the menu on link click (for mobile)
   };
@@ -24,7 +25,13 @@ function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-blue-700 text-white">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <img src="/placeholder.svg" alt="Logo" className="h-8 w-8" />
+          <Image 
+            src="/placeholder.svg" 
+            alt="Logo" 
+            className="h-8 w-8" 
+            width={32} // Set width
+            height={32} // Set height
+          />
           <span className="font-bold text-lg">Al Madina Quranic Academy</span>
         </div>
         
