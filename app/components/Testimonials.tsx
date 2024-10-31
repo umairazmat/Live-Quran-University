@@ -3,10 +3,16 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import img1 from '../Images/img1.jpg';
 const Testimonials = () => {
-    const testimonials : any = [
+    interface Testimonial {
+        name: string;
+        image: StaticImageData; // Assuming you're using Next.js static images
+        text: string;
+        rating: number;
+    }
+    const testimonials :  Testimonial[] = [
         {
             name: "Ali Khan",
             image: img1,
@@ -66,18 +72,17 @@ const Testimonials = () => {
                     What Our Students Say
                 </h2>
                 <Slider {...settings}>
-                    {testimonials.map((testimonial: any, index : any) => (
-                        <div key={index} className="px-2 ">
+                    {testimonials.map((testimonial: Testimonial, index : number) => (
+                        <div key={index as number} className="px-2 ">
                             <div className="bg-white shadow-md rounded-lg p-6 transform transition-transform duration-300 hover:scale-105">
                                 <div className="flex flex-col items-center text-center">
                                     <div className=" mb-4">
                                         <Image
                                             src={testimonial.image}
-                                            alt={testimonial.title}
+                                            alt={testimonial.name}
                                             className="w-full h-48 object-cover"
                                             width={300} // Set a width
                                             height={200} // Set a height
-                                            layout="responsive" // Use responsive layout
                                         />
                                     </div>
                                     <h3 className="font-semibold mt-8">{testimonial.name}</h3>
