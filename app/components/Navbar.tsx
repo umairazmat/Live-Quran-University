@@ -1,12 +1,10 @@
-"use client"; // Ensure the component runs on the client side
-
+"use client"; 
 import React, { useState } from 'react';
-import { Menu as MenuIcon, X as CloseIcon } from 'lucide-react'; // Example icons, update based on your icons source
-import Image from 'next/image'; // Import the Image component
+import { Menu as MenuIcon, X as CloseIcon } from 'lucide-react'; 
+import Image from 'next/image';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('home'); // Initialize active link
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,11 +12,6 @@ function Navbar() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-  };
-
-  const handleLinkClick = (link: string) => {
-    setActiveLink(link); // Set the active link
-    closeMenu(); // Close the menu on link click (for mobile)
   };
 
   return (
@@ -29,8 +22,8 @@ function Navbar() {
             src="/placeholder.svg" 
             alt="Logo" 
             className="h-8 w-8" 
-            width={32} // Set width
-            height={32} // Set height
+            width={32} 
+            height={32} 
           />
           <span className="font-bold text-lg">Al Madina Quranic Academy</span>
         </div>
@@ -40,9 +33,9 @@ function Navbar() {
           {['home', 'courses', 'about', 'register', 'contact', 'pricing'].map((link) => (
             <a
               key={link}
-              className={`hover:text-blue-200 ${activeLink === link ? 'text-blue-200' : ''}`} // Active link styling
+              className="font-bold hover:text-blue-200" 
               href={`#${link}`}
-              onClick={() => handleLinkClick(link)}
+              onClick={closeMenu}
             >
               {link.charAt(0).toUpperCase() + link.slice(1)} {/* Capitalize first letter */}
             </a>
@@ -62,9 +55,8 @@ function Navbar() {
             {['home', 'courses', 'about', 'register', 'contact', 'pricing'].map((link) => (
               <a
                 key={link}
-                className={`hover:text-blue-200 ${activeLink === link ? 'text-blue-200' : ''}`} // Active link styling
-                href={`#${link}`}
-                onClick={() => handleLinkClick(link)}
+                className="font-bold hover:text-blue-200"
+                onClick={closeMenu}
               >
                 {link.charAt(0).toUpperCase() + link.slice(1)} {/* Capitalize first letter */}
               </a>

@@ -2,14 +2,20 @@ import React from 'react';
 import img1 from '../Images/img1.jpg';
 
 function HeroSection() {
+    const scrollToContact = () => {
+        const contactSection = document.getElementById("register");
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <div
             id="home"
-            className="relative w-full py-24 md:py-32 lg:py-48 bg-slate-700 text-white overflow-hidden h-auto"
+            className="relative w-full min-h-screen py-24 md:py-32 lg:py-48 bg-slate-700 text-white overflow-hidden h-auto"
             style={{
                 backgroundImage: `url(${img1.src})`,
                 backgroundSize: 'cover',
-                
                 backgroundPosition: 'center',
                 backgroundAttachment: 'fixed', // Parallax effect
             }}
@@ -22,8 +28,9 @@ function HeroSection() {
                     Join our expert-led classes and deepen your understanding of the Quran
                 </p>
                 <button
-                    type="submit"
-                    className=" bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md "
+                    type="button"
+                    onClick={scrollToContact}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105"
                 >
                     Start Learning Today
                 </button>
