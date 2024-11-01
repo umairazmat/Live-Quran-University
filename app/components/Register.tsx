@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "@emailjs/browser";
+
+interface FormValues {
+    name: string;
+    email: string;
+    phone: string;
+    course: string;
+}
 
 const Register = () => {
     // State for loading indicator
@@ -24,10 +31,12 @@ const Register = () => {
     });
 
     // Separate form handler function
-    const handleSubmit = async (values: any, { resetForm }: any) => {
+    const handleSubmit = async (
+        values: FormValues, 
+        { resetForm }: FormikHelpers<FormValues>
+    ) => {
         setLoading(true); // Set loading state to true
         try {
-            // Log the form values to the console (you can send this to your backend or EmailJS)
             console.log(values);
             const templateParams = {
                 name: values.name,
@@ -44,16 +53,16 @@ const Register = () => {
                 process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
             );
             toast.success("Registration successful!");
-            console.log('response', response)
+            console.log('response', response);
             resetForm(); // Reset the form fields
         } catch (error) {
-            // Handle error notification
             console.error("Registration error:", error);
             toast.error("An error occurred during registration. Please try again.");
         } finally {
             setLoading(false); // Set loading state to false
         }
     };
+
     return (
         <section id="register" className="py-16">
             <div className="container mx-auto px-4">
@@ -147,7 +156,7 @@ const Register = () => {
                                             <option value="hifz">Hifz (Memorization)</option>
                                             <option value="tajweed">Tajweed</option>
                                             <option value="nazrah">Nazrah (Reading)</option>
-                                            <option value="nazrah">Norani Qaida (Reading)</option>
+                                            <option value="norani">Norani Qaida (Reading)</option>
                                         </Field>
                                         <ErrorMessage name="course" component="div" className="text-red-600" />
                                     </div>

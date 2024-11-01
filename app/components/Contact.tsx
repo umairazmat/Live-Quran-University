@@ -1,6 +1,5 @@
-"use client"; // Ensure the component runs on the client side
 import React, { useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
@@ -30,7 +29,10 @@ const Contact: React.FC = () => {
 
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (values: typeof initialValues, { resetForm }: any) => {
+    const handleSubmit = async (
+        values: typeof initialValues,
+        { resetForm }: FormikHelpers<typeof initialValues> // Use FormikHelpers type
+    ) => {
         setLoading(true);
         try {
             const templateParams = {

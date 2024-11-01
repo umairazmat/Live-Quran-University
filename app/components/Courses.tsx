@@ -1,7 +1,7 @@
 "use client"; // Ensure the component runs on the client side
 import React, { useState } from 'react';
 import Slider from "react-slick";
-import Image from 'next/image'; // Import the Image component
+import Image from 'next/image';
 import img1 from '../Images/img1.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -34,14 +34,14 @@ function Courses() {
     
 
     const settings = {
-        dots: false, // Disable default dots
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        beforeChange: (current: any, next: any) => setCurrentSlide(next), // Update current slide index
+        beforeChange: (current: number, next: number) => setCurrentSlide(next), // Update current slide index
         responsive: [
             {
                 breakpoint: 1024,
