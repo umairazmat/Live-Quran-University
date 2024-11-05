@@ -1,18 +1,21 @@
 "use client"; // Ensure the component runs on the client side
-import React from "react";
+import React,{useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image, { StaticImageData } from 'next/image';
-import img1 from '../Images/img1.jpg';
+import img1 from '../Images/download.jpeg';
+
 const Testimonials = () => {
+    const [currentSlide, setCurrentSlide] = useState(0)
     interface Testimonial {
         name: string;
         image: StaticImageData; // Assuming you're using Next.js static images
         text: string;
         rating: number;
     }
-    const testimonials :  Testimonial[] = [
+
+    const testimonials: Testimonial[] = [
         {
             name: "Ali Khan",
             image: img1,
@@ -40,13 +43,14 @@ const Testimonials = () => {
     ];
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
@@ -66,23 +70,23 @@ const Testimonials = () => {
     };
 
     return (
-        <section id="testimonials" className="py-16 bg-blue-50">
+        <section id="testimonials" className="py-40 bg-blue-50">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">
                     What Our Students Say
                 </h2>
                 <Slider {...settings}>
-                    {testimonials.map((testimonial: Testimonial, index : number) => (
-                        <div key={index as number} className="px-2 ">
+                    {testimonials.map((testimonial: Testimonial, index: number) => (
+                        <div key={index} className="px-2">
                             <div className="bg-white shadow-md rounded-lg p-6 transform transition-transform duration-300 hover:scale-105">
                                 <div className="flex flex-col items-center text-center">
-                                    <div className=" mb-4">
+                                    <div className="mb-4">
                                         <Image
                                             src={testimonial.image}
                                             alt={testimonial.name}
-                                            className="w-full h-48 object-cover"
-                                            width={300} // Set a width
-                                            height={200} // Set a height
+                                            className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-md" // Fully rounded image
+                                            width={96} // Set width
+                                            height={96} // Set height
                                         />
                                     </div>
                                     <h3 className="font-semibold mt-8">{testimonial.name}</h3>
@@ -104,6 +108,15 @@ const Testimonials = () => {
                         </div>
                     ))}
                 </Slider>
+                <div className="flex justify-center mt-4">
+                    {testimonials.map((_, index) => (
+                        <div
+                            key={index}
+                            className={`h-2 w-2 rounded-full mx-1 cursor-pointer ${currentSlide === index ? 'bg-blue-500' : 'bg-gray-300'}`}
+                            onClick={() => setCurrentSlide(index)} // Optional: Click to navigate to the slide
+                        ></div>
+                    ))}
+                </div>
             </div>
         </section>
     );

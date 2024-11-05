@@ -1,10 +1,12 @@
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+
 const Footer = () => (
-    <footer className="bg-blue-800 text-white py-8">
+    <footer className="bg-blue-800 text-white py-40">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 className="text-lg font-semibold mb-4">
-                        About Al Madina Quranic Academy
+                    Online Quran University
                     </h3>
                     <p className="text-sm">
                         Empowering minds through Quranic education since 2023. Our mission
@@ -43,18 +45,30 @@ const Footer = () => (
                 </div>
                 <div>
                     <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
+                    <div className="my-4 flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                            <FaFacebook size={24} />
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                            <FaTwitter size={24} />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                            <FaInstagram size={24} />
+                        </a>
+                    </div>
                     <ul className="space-y-2 text-sm">
                         <li>Email: info@almadinaquran.com</li>
                         <li>Phone: +1 (555) 123-4567</li>
                         <li>Address: 123 Islamic Center St, City, Country</li>
                     </ul>
+
                 </div>
             </div>
             <div className="mt-8 pt-8 border-t border-blue-700 text-center text-sm">
-                © 2023 Al Madina Quranic Academy. All rights reserved.
+                © 2023 Online Quran University. All rights reserved.
             </div>
         </div>
     </footer>
 );
 
-export default Footer
+export default Footer;
