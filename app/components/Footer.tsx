@@ -1,12 +1,12 @@
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => (
-    <footer className="bg-blue-800 text-white py-8">
+    <footer className="bg-blue-800 text-white py-40">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 className="text-lg font-semibold mb-4">
-                        About Al Madina Quranic Academy
+                    Online Quran University
                     </h3>
                     <p className="text-sm">
                         Empowering minds through Quranic education since 2023. Our mission
@@ -65,7 +65,7 @@ const Footer = () => (
                 </div>
             </div>
             <div className="mt-8 pt-8 border-t border-blue-700 text-center text-sm">
-                © 2023 Al Madina Quranic Academy. All rights reserved.
+                © 2023 Online Quran University. All rights reserved.
             </div>
         </div>
     </footer>

@@ -3,7 +3,7 @@ import img1 from '../Images/img1.jpg';
 import Image from 'next/image';
 function AboutUs() {
     return (
-        <section id="about" className="py-16">
+        <section id="about" className="py-40">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">About Us</h2>
                 <div className="flex flex-col md:flex-row items-center gap-8">
@@ -14,7 +14,7 @@ function AboutUs() {
                     />
                     <div>
                         <p className="text-lg mb-4">
-                            Al Madina Quranic Academy offers comprehensive online Quran courses
+                            Online Quran University offers comprehensive online Quran courses
                             taught by qualified teachers. Our mission is to make Quranic
                             education accessible to everyone, anywhere in the world.
                         </p>

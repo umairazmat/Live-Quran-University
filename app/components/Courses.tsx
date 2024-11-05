@@ -31,7 +31,7 @@ function Courses() {
             image: img1,
         },
     ];
-    
+
 
     const settings = {
         dots: false,
@@ -41,6 +41,10 @@ function Courses() {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        arrows: false,
+        // nextArrow: <FaArrowLeft style={{ color: 'blue', fontSize: '70px' }} />,
+        // prevArrow: <FaArrowLeft style={{ color: 'blue', fontSize: '24px' }} />,
+
         beforeChange: (current: number, next: number) => setCurrentSlide(next), // Update current slide index
         responsive: [
             {
@@ -65,7 +69,7 @@ function Courses() {
     };
 
     return (
-        <section id="courses" className="py-16 bg-blue-50">
+        <section id="courses" className="py-40 bg-blue-50">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">Our Courses</h2>
                 <Slider {...settings}>

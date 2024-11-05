@@ -1,19 +1,20 @@
 "use client"; // Ensure the component runs on the client side
-import React from "react";
+import React,{useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image, { StaticImageData } from 'next/image';
-import img1 from '../Images/img1.jpg';
+import img1 from '../Images/download.jpeg';
 
 const Testimonials = () => {
+    const [currentSlide, setCurrentSlide] = useState(0)
     interface Testimonial {
         name: string;
         image: StaticImageData; // Assuming you're using Next.js static images
         text: string;
         rating: number;
     }
-    
+
     const testimonials: Testimonial[] = [
         {
             name: "Ali Khan",
@@ -42,13 +43,14 @@ const Testimonials = () => {
     ];
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
@@ -68,7 +70,7 @@ const Testimonials = () => {
     };
 
     return (
-        <section id="testimonials" className="py-16 bg-blue-50">
+        <section id="testimonials" className="py-40 bg-blue-50">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">
                     What Our Students Say
@@ -106,6 +108,15 @@ const Testimonials = () => {
                         </div>
                     ))}
                 </Slider>
+                <div className="flex justify-center mt-4">
+                    {testimonials.map((_, index) => (
+                        <div
+                            key={index}
+                            className={`h-2 w-2 rounded-full mx-1 cursor-pointer ${currentSlide === index ? 'bg-blue-500' : 'bg-gray-300'}`}
+                            onClick={() => setCurrentSlide(index)} // Optional: Click to navigate to the slide
+                        ></div>
+                    ))}
+                </div>
             </div>
         </section>
     );
