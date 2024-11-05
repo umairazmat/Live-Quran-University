@@ -12,7 +12,7 @@ function HeroSection() {
     return (
         <div
             id="home"
-            className="relative w-full min-h-screen py-24 md:py-32 lg:py-48 overflow-hidden "
+            className="relative w-full min-h-screen py-24 md:py-32 lg:py-48 overflow-hidden flex justify-center items-center" // Center flex styles applied
             style={{
                 backgroundImage: `url(${img1.src})`,
                 backgroundSize: 'cover',
@@ -24,7 +24,7 @@ function HeroSection() {
             <div className="absolute inset-0 bg-black opacity-70"></div>
 
             {/* Content */}
-            <div className="container mx-auto px-4 text-center relative z-10">
+            <div className=" mx-auto px-4 text-center relative z-10 flex flex-col justify-center items-center h-full"> {/* Added flex and height styles */}
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-white">
                     Learn Quran Online
                 </h1>

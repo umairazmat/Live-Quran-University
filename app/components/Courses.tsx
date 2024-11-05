@@ -69,7 +69,7 @@ function Courses() {
     };
 
     return (
-        <section id="courses" className="py-40 bg-blue-50">
+        <section id="courses" className="py-20 md:py-24 lg:py-40 bg-blue-50">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">Our Courses</h2>
                 <Slider {...settings}>
