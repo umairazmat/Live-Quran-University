@@ -4,7 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image, { StaticImageData } from 'next/image';
-import img1 from '../Images/download.jpeg';
+import baby_boy from '../Images/download.jpeg';
+import baby_girl from '../Images/baby_girl.jpeg';
+import baby_girl_1 from '../Images/baby_girl_1.jpeg';
+import baby_boy_1 from '../Images/baby_boy.jpeg';
 
 const Testimonials = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -18,25 +21,25 @@ const Testimonials = () => {
     const testimonials: Testimonial[] = [
         {
             name: "Ali Khan",
-            image: img1,
+            image: baby_boy,
             text: "The Noorani Qaida course helped me build a strong foundation in Quranic reading. Highly recommended!",
             rating: 5,
         },
         {
             name: "Fatima Noor",
-            image: img1,
+            image: baby_girl,
             text: "The Quran Reading course transformed my recitation. The instructors are truly dedicated.",
             rating: 5,
         },
         {
             name: "Hassan Malik",
-            image: img1,
+            image: baby_boy_1,
             text: "Learning Tajweed made my recitation so much better. I feel more connected to the Quran now.",
             rating: 4,
         },
         {
             name: "Sana Javed",
-            image: img1,
+            image: baby_girl_1,
             text: "The Quran Memorization program is fantastic! The mentors are supportive and understanding.",
             rating: 5,
         },

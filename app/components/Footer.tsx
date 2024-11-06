@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaTiktok, FaSkype, FaViber, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Footer = () => (
     <footer className="bg-blue-800 text-white py-20">
@@ -6,10 +6,10 @@ const Footer = () => (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 className="text-lg font-semibold mb-4">
-                    Online Quran University
+                        Live Quran University
                     </h3>
                     <p className="text-sm">
-                        Empowering minds through Quranic education since 2023. Our mission
+                        Empowering minds through Quranic education since 2024. Our mission
                         is to make Quranic learning accessible to everyone worldwide.
                     </p>
                 </div>
@@ -46,26 +46,40 @@ const Footer = () => (
                 <div>
                     <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
                     <div className="my-4 flex space-x-4">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                        {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
                             <FaFacebook size={24} />
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
-                            <FaTwitter size={24} />
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                        </a> */}
+                        <a href="https://www.instagram.com/universitylivequran?igsh=djFnMWN1ODV1aWgw" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
                             <FaInstagram size={24} />
                         </a>
+                        <a href="https://www.tiktok.com/@livequranuniversity?_t=8qtDX1zrNaq&_r=1" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                            <FaTiktok size={24} />
+                        </a>
+                        <a href="https://join.skype.com/invite/vEL2NeF2JoYa" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                            <FaSkype size={24} />
+                        </a>
+                        <a href="viber://chat/?number=+923025297207" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
+                            <FaViber size={24} />
+                        </a>
                     </div>
-                    <ul className="space-y-2 text-sm">
-                        <li>Email: info@almadinaquran.com</li>
-                        <li>Phone: +1 (555) 123-4567</li>
-                        <li>Address: 123 Islamic Center St, City, Country</li>
+                    <ul className="space-y-2 text-sm mt-4">
+                        <li className="flex items-center space-x-2">
+                            <FaEnvelope />
+                            <span>info@almadinaquran.com</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                            <FaPhoneAlt />
+                            <span>+923025297207</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                            <FaMapMarkerAlt />
+                            <span>Iqbal Town, Lahore, Pakistan</span>
+                        </li>
                     </ul>
-
                 </div>
             </div>
             <div className="mt-8 pt-8 border-t border-blue-700 text-center text-sm">
-                © 2023 Online Quran University. All rights reserved.
+                © 2024 Live Quran University. All rights reserved.
             </div>
         </div>
     </footer>

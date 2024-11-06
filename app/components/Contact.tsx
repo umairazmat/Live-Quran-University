@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
                             disabled={loading} // Disable button while loading
                             className={`w-full px-4 py-2 ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"} text-white font-medium rounded`}
                         >
-                            {loading ? "Sending..." : "Send Message"}
+                            {loading ? "Sending..." : "Send Mail"}
                         </button>
                     </Form>
                 </Formik>

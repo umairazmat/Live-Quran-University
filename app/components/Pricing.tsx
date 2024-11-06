@@ -19,7 +19,7 @@ const Pricing = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div className="bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-105 flex flex-col h-full">
                             <h3 className="text-xl font-bold mb-4">Basic Plan</h3>
-                            <div className="text-2xl font-bold mb-4">$49/month</div>
+                            <div className="text-2xl font-bold mb-4">$30/month</div>
                             <ul className="space-y-2 mb-6 flex-grow">
                                 <li className="flex items-center">
                                     <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@ const Pricing = () => {
 
                         <div className="bg-blue-500 text-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-105 flex flex-col h-full">
                             <h3 className="text-xl font-bold mb-4">Standard Plan</h3>
-                            <div className="text-2xl font-bold mb-4">$79/month</div>
+                            <div className="text-2xl font-bold mb-4">$50/month</div>
                             <ul className="space-y-2 mb-6 flex-grow">
                                 <li className="flex items-center">
                                     <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +85,7 @@ const Pricing = () => {
 
                         <div className="bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-105 flex flex-col h-full">
                             <h3 className="text-xl font-bold mb-4">Premium Plan</h3>
-                            <div className="text-2xl font-bold mb-4">$129/month</div>
+                            <div className="text-2xl font-bold mb-4">$60/month</div>
                             <ul className="space-y-2 mb-6 flex-grow">
                                 <li className="flex items-center">
                                     <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

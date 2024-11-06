@@ -10,6 +10,7 @@ import Register from "./components/Register";
 import Testimonials from "./components/Testimonials";
 import { FaWhatsapp } from "react-icons/fa"; // Import the WhatsApp icon
 import { useEffect } from "react";
+import Topbar from "./components/Topbar";
 
 export default function Home() {
   // Function to scroll to top when the page loads
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <>
+      <Topbar />
       <Navbar />
       <HeroSection />
       <Courses />
@@ -30,10 +32,10 @@ export default function Home() {
       <Footer />
 
       {/* WhatsApp Icon */}
-      <a 
-        href="https://wa.me/+923098087309" // Replace with your WhatsApp number
+      <a
+        href="https://wa.me/+923025297207" // Updated WhatsApp number
         className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition duration-300"
-        target="_blank" 
+        target="_blank"
         rel="noopener noreferrer"
       >
         <FaWhatsapp size={30} />

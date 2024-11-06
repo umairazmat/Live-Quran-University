@@ -14,7 +14,7 @@ function AboutUs() {
                     />
                     <div>
                         <p className="text-lg mb-4">
-                            Online Quran University offers comprehensive online Quran courses
+                            Live Quran University offers comprehensive online Quran courses
                             taught by qualified teachers. Our mission is to make Quranic
                             education accessible to everyone, anywhere in the world.
                         </p>
