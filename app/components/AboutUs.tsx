@@ -3,7 +3,7 @@ import img1 from '../Images/img1.jpg';
 import Image from 'next/image';
 function AboutUs() {
     return (
-        <section id="about" className="py-40">
+        <section id="about" className="py-20 md:py-24 lg:py-40">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">About Us</h2>
                 <div className="flex flex-col md:flex-row items-center gap-8">

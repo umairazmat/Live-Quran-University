@@ -8,7 +8,7 @@ const Pricing = () => {
         }
     };
     return (
-        <section id="pricing" className="py-40">
+        <section id="pricing" className="py-20 md:py-24 lg:py-40">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-4">Pricing Plans</h2>
                 <p className="text-center mb-12 text-gray-600">
