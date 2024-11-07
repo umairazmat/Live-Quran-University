@@ -1,7 +1,8 @@
+"use client"; // Ensure the component runs on the client side
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "@emailjs/browser";
 
@@ -26,18 +27,18 @@ const Register = () => {
             .email("Invalid email format"),
         phone: Yup.string()
             .required("Phone number is required")
-            .matches(/^[0-9]+$/, "Phone number must be numeric"),
+            .matches(/^[+0-9]+$/, "Phone number must be numeric"),
         course: Yup.string().required("Course selection is required"),
     });
 
     // Separate form handler function
     const handleSubmit = async (
-        values: FormValues, 
+        values: FormValues,
         { resetForm }: FormikHelpers<FormValues>
     ) => {
         setLoading(true); // Set loading state to true
         try {
-            console.log(values);
+            // console.log(values);
             const templateParams = {
                 name: values.name,
                 email: values.email,
@@ -46,14 +47,14 @@ const Register = () => {
             };
 
             // Send email using EmailJS
-            const response = await emailjs.send(
+            await emailjs.send(
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
                 process.env.NEXT_PUBLIC_REGISTER_TEMPLATE_ID!,  // Make sure this ID is correct in EmailJS for registration
                 templateParams,
                 process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
             );
             toast.success("Registration successful!");
-            console.log('response', response);
+            // console.log('response', response);
             resetForm(); // Reset the form fields
         } catch (error) {
             console.error("Registration error:", error);
@@ -173,7 +174,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer /> {/* Toast notifications container */}
         </section>
     );
 };

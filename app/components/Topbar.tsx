@@ -13,7 +13,7 @@ const TopBar = () => (
             </div>
             <div className="flex items-center space-x-2 text-sm mt-2 md:mt-0">
                 <FaEnvelope />
-                <span>info@almadinaquran.com</span>
+                <span>livequranuniversity@gmail.com</span>
             </div>
         </div>
     </div>

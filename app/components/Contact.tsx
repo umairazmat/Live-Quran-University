@@ -43,14 +43,14 @@ const Contact: React.FC = () => {
             };
 
             // Send email using EmailJS
-            const response = await emailjs.send(
+            await emailjs.send(
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
                 process.env.NEXT_PUBLIC_CONTACT_TEMPLATE_ID!,
                 templateParams,
                 process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
             );
 
-            console.log("Email sent successfully:", response);
+            // console.log("Email sent successfully:", response);
             toast.success("Message sent successfully!");
             resetForm();
         } catch (error) {

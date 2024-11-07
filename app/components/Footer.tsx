@@ -1,7 +1,7 @@
-import { FaInstagram, FaTiktok, FaSkype, FaViber, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaTiktok, FaSkype, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaViber } from 'react-icons/fa';
 
 const Footer = () => (
-    <footer className="bg-blue-800 text-white py-20">
+    <footer className="bg-blue-800 text-white pt-20 pb-10">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -46,9 +46,6 @@ const Footer = () => (
                 <div>
                     <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
                     <div className="my-4 flex space-x-4">
-                        {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
-                            <FaFacebook size={24} />
-                        </a> */}
                         <a href="https://www.instagram.com/universitylivequran?igsh=djFnMWN1ODV1aWgw" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
                             <FaInstagram size={24} />
                         </a>
@@ -58,17 +55,18 @@ const Footer = () => (
                         <a href="https://join.skype.com/invite/vEL2NeF2JoYa" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
                             <FaSkype size={24} />
                         </a>
-                        <a href="viber://chat/?number=+923025297207" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300">
-                            <FaViber size={24} />
-                        </a>
                     </div>
                     <ul className="space-y-2 text-sm mt-4">
                         <li className="flex items-center space-x-2">
                             <FaEnvelope />
-                            <span>info@almadinaquran.com</span>
+                            <span>livequranuniversity@gmail.com</span>
                         </li>
                         <li className="flex items-center space-x-2">
                             <FaPhoneAlt />
+                            <span>+923025297207</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                            <FaViber/>
                             <span>+923025297207</span>
                         </li>
                         <li className="flex items-center space-x-2">
