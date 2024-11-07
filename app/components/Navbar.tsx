@@ -1,7 +1,6 @@
 "use client"; 
 import React, { useState } from 'react';
 import { Menu as MenuIcon, X as CloseIcon } from 'lucide-react'; 
-import Image from 'next/image';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,14 +17,14 @@ function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-blue-700 text-white">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <Image 
+          {/* <Image 
             src="/placeholder.svg" 
             alt="Logo" 
             className="h-8 w-8" 
             width={32} 
             height={32} 
-          />
-          <span className="font-bold text-lg">Online Quran University</span>
+          /> */}
+          <span className="font-bold text-lg">Live Quran University</span>
         </div>
         
         {/* Desktop Navigation */}

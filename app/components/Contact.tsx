@@ -43,14 +43,14 @@ const Contact: React.FC = () => {
             };
 
             // Send email using EmailJS
-            const response = await emailjs.send(
+            await emailjs.send(
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
                 process.env.NEXT_PUBLIC_CONTACT_TEMPLATE_ID!,
                 templateParams,
                 process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
             );
 
-            console.log("Email sent successfully:", response);
+            // console.log("Email sent successfully:", response);
             toast.success("Message sent successfully!");
             resetForm();
         } catch (error) {
@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
                             disabled={loading} // Disable button while loading
                             className={`w-full px-4 py-2 ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"} text-white font-medium rounded`}
                         >
-                            {loading ? "Sending..." : "Send Message"}
+                            {loading ? "Sending..." : "Send Mail"}
                         </button>
                     </Form>
                 </Formik>
