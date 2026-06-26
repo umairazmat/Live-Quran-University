@@ -100,14 +100,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#1d4ed8" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a1628" },
-  ],
+  themeColor: "#1d4ed8",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  colorScheme: "light dark",
+  colorScheme: "light",
 };
 
 const jsonLd = [buildOrganizationJsonLd(), buildWebSiteJsonLd(), buildFaqJsonLd()];
@@ -118,9 +115,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900 font-[family-name:var(--font-geist-sans)] antialiased`}
       >
         <script
           type="application/ld+json"

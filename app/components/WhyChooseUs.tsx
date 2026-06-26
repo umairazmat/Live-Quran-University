@@ -28,7 +28,7 @@ const REASONS = [
 
 export default function WhyChooseUs() {
   return (
-    <Section id="why-us">
+    <Section id="why-us" className="bg-white">
       <SectionHeading
         eyebrow="Trust & experience"
         title="Why Choose Us Over Random Apps or YouTube?"

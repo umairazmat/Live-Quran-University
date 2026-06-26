@@ -12,7 +12,7 @@ export default function SolutionSection() {
   };
 
   return (
-    <Section id="solution">
+    <Section id="solution" className="bg-white">
       <SectionHeading
         eyebrow="The solution"
         title="A Simple, Reliable Way to Learn Quran Online"
