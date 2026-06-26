@@ -13,11 +13,20 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
-  color: var(--color-foreground);
-  background: var(--color-background);
+  color: #171717;
+  background: #ffffff;
+}
+
+/* Keep form controls readable when the device is in dark mode */
+input,
+select,
+textarea,
+button {
+  color-scheme: light;
 }
 
 /* Animated WhatsApp float */
@@ -63,9 +72,32 @@ body {
   animation: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-foreground: #ededed;
+@keyframes modal-slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0.6;
   }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.lead-modal-sheet {
+  animation: modal-slide-up 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (min-width: 640px) {
+  .lead-modal-sheet {
+    animation: none;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

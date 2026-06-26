@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FormikHelpers } from "formik";
@@ -9,14 +9,20 @@ import { handleTrialFormSubmit } from "./TrialFormHandler";
 import { LEAD_MODAL_STORAGE_KEY, WHATSAPP_URL } from "../lib/site";
 
 const MODAL_DELAY_MS = 8000;
+const SWIPE_DISMISS_THRESHOLD = 80;
 
 export default function LeadCaptureModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState<"choose" | "form">("choose");
+  const [dragOffset, setDragOffset] = useState(0);
+  const touchStartY = useRef(0);
+  const sheetRef = useRef<HTMLDivElement>(null);
 
   const dismiss = useCallback(() => {
     setIsOpen(false);
+    setView("choose");
+    setDragOffset(0);
     sessionStorage.setItem(LEAD_MODAL_STORAGE_KEY, "1");
   }, []);
 
@@ -42,6 +48,23 @@ export default function LeadCaptureModal() {
     return () => window.removeEventListener("keydown", onEscape);
   }, [dismiss]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const delta = e.touches[0].clientY - touchStartY.current;
+    if (delta > 0) setDragOffset(delta);
+  };
+
+  const handleTouchEnd = () => {
+    if (dragOffset >= SWIPE_DISMISS_THRESHOLD) {
+      dismiss();
+      return;
+    }
+    setDragOffset(0);
+  };
+
   const handleSubmit = async (
     values: TrialFormValues,
     helpers: FormikHelpers<TrialFormValues>
@@ -58,97 +81,131 @@ export default function LeadCaptureModal() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:items-center sm:p-4">
+    <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-4">
       <button
         type="button"
         onClick={dismiss}
-        className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"
         aria-label="Close popup"
       />
 
       <div
+        ref={sheetRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="lead-modal-title"
-        className="relative z-10 max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-white/10 bg-white shadow-2xl sm:rounded-2xl"
+        style={{ transform: dragOffset > 0 ? `translateY(${dragOffset}px)` : undefined }}
+        className="lead-modal-sheet relative z-10 flex max-h-[min(92dvh,720px)] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl border border-slate-200 bg-white shadow-2xl sm:max-h-[92vh] sm:rounded-2xl"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        <div className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 px-6 py-5 text-white">
+        {/* Mobile: drag handle + easy dismiss */}
+        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 bg-white px-4 pb-2 pt-3 sm:hidden">
           <button
             type="button"
             onClick={dismiss}
-            className="absolute right-4 top-4 rounded-lg p-1.5 text-blue-200 transition-colors hover:bg-white/10 hover:text-white"
+            className="rounded-lg px-2 py-2 text-sm font-semibold text-slate-500 active:bg-slate-100"
+          >
+            Not now
+          </button>
+          <div
+            className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-slate-300"
+            aria-hidden
+          />
+          <button
+            type="button"
+            onClick={dismiss}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 active:bg-slate-200"
             aria-label="Close"
           >
-            <X size={20} />
+            <X size={20} strokeWidth={2.5} />
           </button>
-          <p className="text-xs font-bold uppercase tracking-widest text-amber-400">
-            Limited free trials
-          </p>
-          <h2 id="lead-modal-title" className="mt-1 pr-8 text-xl font-extrabold sm:text-2xl">
-            Book Your Free Quran Class Today
-          </h2>
-          <p className="mt-2 text-sm text-blue-100">
-            1-on-1 with a qualified teacher. No payment. No commitment.
-          </p>
         </div>
 
-        <div className="p-6">
-          {view === "choose" ? (
-            <div className="space-y-3">
-              <button
-                type="button"
-                onClick={() => setView("form")}
-                className="flex w-full items-center justify-between rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-4 text-left font-bold text-slate-950 shadow-md transition-transform hover:-translate-y-0.5"
-              >
-                <span>
-                  Book Free Trial Class
-                  <span className="mt-0.5 block text-xs font-medium text-slate-800">
-                    30-second form · We call you back
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          <div className="relative bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 px-5 py-5 text-white sm:px-6">
+            <button
+              type="button"
+              onClick={dismiss}
+              className="absolute right-4 top-4 hidden h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:inline-flex"
+              aria-label="Close"
+            >
+              <X size={20} strokeWidth={2.5} />
+            </button>
+            <p className="text-xs font-bold uppercase tracking-widest text-amber-400">
+              Limited free trials
+            </p>
+            <h2 id="lead-modal-title" className="mt-1 pr-2 text-xl font-extrabold leading-tight sm:pr-10 sm:text-2xl">
+              Book Your Free Quran Class Today
+            </h2>
+            <p className="mt-2 text-sm text-blue-100">
+              1-on-1 with a qualified teacher. No payment. No commitment.
+            </p>
+          </div>
+
+          <div className="px-5 py-5 sm:p-6">
+            {view === "choose" ? (
+              <div className="space-y-3">
+                <button
+                  type="button"
+                  onClick={() => setView("form")}
+                  className="flex w-full items-center justify-between rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-4 text-left font-bold text-slate-950 shadow-md transition-transform active:scale-[0.99]"
+                >
+                  <span>
+                    Book Free Trial Class
+                    <span className="mt-0.5 block text-xs font-medium text-slate-800">
+                      30-second form · We call you back
+                    </span>
                   </span>
-                </span>
-                <span className="text-lg">→</span>
-              </button>
+                  <span className="text-lg">→</span>
+                </button>
 
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={dismiss}
-                className="flex w-full items-center justify-center gap-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 px-5 py-4 font-bold text-emerald-800 transition-colors hover:bg-emerald-100"
-              >
-                <FaWhatsapp className="h-6 w-6" />
-                Chat on WhatsApp Now
-              </a>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={dismiss}
+                  className="flex w-full items-center justify-center gap-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 px-5 py-4 font-bold text-emerald-800 transition-colors active:bg-emerald-100"
+                >
+                  <FaWhatsapp className="h-6 w-6" />
+                  Chat on WhatsApp Now
+                </a>
 
-              <p className="pt-2 text-center text-xs text-slate-500">
-                500+ students · 4.9★ rating · Reply within hours
-              </p>
-              <button
-                type="button"
-                onClick={dismiss}
-                className="w-full py-2 text-sm text-slate-400 transition-colors hover:text-slate-600"
-              >
-                Maybe later
-              </button>
-            </div>
-          ) : (
-            <div>
-              <button
-                type="button"
-                onClick={() => setView("choose")}
-                className="mb-4 text-sm font-medium text-blue-700 hover:text-blue-900"
-              >
-                ← Back to options
-              </button>
-              <TrialBookingForm
-                onSubmit={handleSubmit}
-                loading={loading}
-                compact
-                idPrefix="modal"
-              />
-            </div>
-          )}
+                <p className="pt-1 text-center text-xs text-slate-500">
+                  500+ students · 4.9★ rating · Reply within hours
+                </p>
+
+                <button
+                  type="button"
+                  onClick={dismiss}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 text-sm font-semibold text-slate-600 transition-colors active:bg-slate-100"
+                >
+                  Maybe later
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setView("choose")}
+                  className="mb-4 text-sm font-medium text-blue-700 hover:text-blue-900"
+                >
+                  ← Back to options
+                </button>
+                <TrialBookingForm
+                  onSubmit={handleSubmit}
+                  loading={loading}
+                  compact
+                  idPrefix="modal"
+                />
+              </div>
+            )}
+          </div>
         </div>
+
+        {/* Safe area for phones with home indicator */}
+        <div className="h-[env(safe-area-inset-bottom)] shrink-0 bg-white sm:hidden" />
       </div>
     </div>
   );
