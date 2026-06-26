@@ -18,6 +18,7 @@ import {
   SOCIAL_LINKS,
   WHATSAPP_URL,
 } from "../lib/site";
+import { buildDeveloperInquiryMailto, DEVELOPER_CREDITS } from "../lib/credits";
 
 const SOCIAL_ICONS = {
   Instagram: FaInstagram,
@@ -128,8 +129,41 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-blue-200/50">
-          © {new Date().getFullYear()} Live Quran University. All rights reserved.
+        <div className="mt-10 space-y-4 border-t border-white/10 pt-6 text-center text-xs">
+          <p className="text-blue-200/60">
+            © {new Date().getFullYear()} Live Quran University. All rights reserved.
+          </p>
+
+          <p className="text-blue-200/45">
+            Website developed by{" "}
+            <a
+              href={DEVELOPER_CREDITS.devlotech.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-blue-200/75 transition-colors hover:text-amber-300"
+            >
+              {DEVELOPER_CREDITS.devlotech.name}
+            </a>
+            {" & "}
+            <a
+              href={DEVELOPER_CREDITS.umair.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-blue-200/75 transition-colors hover:text-amber-300"
+            >
+              {DEVELOPER_CREDITS.umair.name}
+            </a>
+          </p>
+
+          <p>
+            <a
+              href={buildDeveloperInquiryMailto()}
+              className="inline-flex items-center gap-1 text-blue-200/55 transition-colors hover:text-amber-300"
+            >
+              Need a website like this? Contact the developers
+              <span aria-hidden>→</span>
+            </a>
+          </p>
         </div>
       </div>
     </footer>
