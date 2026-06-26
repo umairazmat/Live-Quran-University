@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -35,20 +34,15 @@ const Contact: React.FC = () => {
     ) => {
         setLoading(true);
         try {
-            const templateParams = {
-                name: values.name,
-                email: values.email,
-                phone: values.phone,
-                message: values.message,
-            };
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(values),
+            });
 
-            // Send email using EmailJS
-            await emailjs.send(
-                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-                process.env.NEXT_PUBLIC_CONTACT_TEMPLATE_ID!,
-                templateParams,
-                process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
-            );
+            if (!response.ok) {
+                throw new Error("Failed to send message");
+            }
 
             // console.log("Email sent successfully:", response);
             toast.success("Message sent successfully!");

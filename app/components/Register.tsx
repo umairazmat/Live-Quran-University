@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import emailjs from "@emailjs/browser";
+import { submitTrialBooking } from "../lib/submitTrialBooking";
 
 interface FormValues {
     name: string;
@@ -39,26 +39,22 @@ const Register = () => {
         setLoading(true); // Set loading state to true
         try {
             // console.log(values);
-            const templateParams = {
-                name: values.name,
-                email: values.email,
-                phone: values.phone,
-                course: values.course,
-            };
-
-            // Send email using EmailJS
-            await emailjs.send(
-                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-                process.env.NEXT_PUBLIC_REGISTER_TEMPLATE_ID!,  // Make sure this ID is correct in EmailJS for registration
-                templateParams,
-                process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
+            await submitTrialBooking(
+                {
+                    name: values.name,
+                    phone: values.phone,
+                    course: values.course,
+                    location: "",
+                    message: `Email: ${values.email}`,
+                },
+                "register form"
             );
-            toast.success("Registration successful!");
+            toast.success("Your free trial is booked!");
             // console.log('response', response);
             resetForm(); // Reset the form fields
         } catch (error) {
             console.error("Registration error:", error);
-            toast.error("An error occurred during registration. Please try again.");
+            toast.error("Could not book your trial. Please try again.");
         } finally {
             setLoading(false); // Set loading state to false
         }
@@ -68,13 +64,13 @@ const Register = () => {
         <section id="register" className="py-20 md:py-24 lg:py-40">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">
-                    Register for Our Quran Classes
+                    Book Your Free Trial Class
                 </h2>
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto">
                     <div className="md:flex">
                         <div className="bg-blue-600 text-white p-8 md:w-1/2">
                             <h3 className="text-2xl font-bold mb-4">
-                                Enroll Now and Begin Your Journey!
+                                Start Your Free Trial Today!
                             </h3>
                             <p className="mb-4">
                                 Don&apos;t miss the opportunity to learn Quran online with our esteemed
@@ -166,7 +162,7 @@ const Register = () => {
                                         disabled={loading} // Disable button while loading
                                         className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                                     >
-                                        {loading ? "Registering..." : "Register Now"}
+                                        {loading ? "Booking..." : "Book Free Trial"}
                                     </button>
                                 </Form>
                             )}
